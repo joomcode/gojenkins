@@ -4,6 +4,7 @@
 *.so
 .idea/
 .vscode/
+.DS_Store
 
 # Folders
 _obj

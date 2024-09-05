@@ -424,14 +424,17 @@ func (j *Job) HasQueuedBuild() {
 }
 
 func (j *Job) InvokeSimple(ctx context.Context, params map[string]string) (int64, error) {
-	isQueued, err := j.IsQueued(ctx)
-	if err != nil {
-		return 0, err
-	}
-	if isQueued {
-		Error.Printf("%s is already running", j.GetName())
-		return 0, nil
-	}
+	//!! This code is useless or even harmful. It does ignore params diff and doesn't return queueID or error if job has already in queue.
+	//!! Commented instead of deleting, just in case for accidental future remerge this shit from upstream
+
+	//isQueued, err := j.IsQueued(ctx)
+	//if err != nil {
+	//	return 0, err
+	//}
+	//if isQueued {
+	//	Error.Printf("%s is already running", j.GetName())
+	//	return 0, nil
+	//}
 
 	endpoint := "/build"
 	parameters, err := j.GetParameters(ctx)
@@ -473,14 +476,18 @@ func (j *Job) InvokeSimple(ctx context.Context, params map[string]string) (int64
 }
 
 func (j *Job) Invoke(ctx context.Context, files []string, skipIfRunning bool, params map[string]string, cause string, securityToken string) (bool, error) {
-	isQueued, err := j.IsQueued(ctx)
-	if err != nil {
-		return false, err
-	}
-	if isQueued {
-		Error.Printf("%s is already running", j.GetName())
-		return false, nil
-	}
+	//!! This code is useless or even harmful. It does ignore params diff and doesn't return queueID or error if job has already in queue.
+	//!! Commented instead of deleting, just in case for accidental future remerge this shit from upstream
+
+	//isQueued, err := j.IsQueued(ctx)
+	//if err != nil {
+	//	return false, err
+	//}
+	//if isQueued {
+	//	Error.Printf("%s is already running", j.GetName())
+	//	return false, nil
+	//}
+
 	isRunning, err := j.IsRunning(ctx)
 	if err != nil {
 		return false, err
